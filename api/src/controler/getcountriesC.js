@@ -27,10 +27,34 @@ const getCountryQ = async (req, res) => {
       }
     }
   } catch (error) {
-    console.log(error + "Error controler getcountriesC function getCountry");
+    console.log(error + " Error controler getcountriesC -> getCountry");
+  }
+};
+
+const getCountryP = async (req, res) => {
+  const id = req.params.id.toUpperCase();
+
+  try {
+    if (id) {
+      const country = await Country.findOne({
+        where: {
+          id: id,
+        },
+        include: Activities,
+      });
+      return res.json(country);
+    } else {
+      return res.status(404).send("No detail");
+    }
+
+    /* const countryId = await Country.findByPk(id, { include: Activities });
+    res.json(countryId); */
+  } catch (error) {
+    console.log(error + " Error controler getcountriesC -> getCountryP");
   }
 };
 
 module.exports = {
   getCountryQ,
+  getCountryP,
 };

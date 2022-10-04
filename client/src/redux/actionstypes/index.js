@@ -1,0 +1,8 @@
+export const GET_COUNTRYS = "GET_COUNTRYS";
+export const GET_COUNTRY_SEARCH = "GET_COUNTRY_SEARCH";
+export const GET_CONTINENT = "GET_CONTINENTS";
+export const BY_ORDER = "BY_ORDER";
+export const ORDER_BY_POPULATION = "ORDER_BY_POPULATION";
+export const GET_DETAIL = "GET_DETAIL";
+export const GET_ACTIVITY = "GET_ACTIVITY";
+export const BY_ACTIVITY = "BY_ACTIVITY";

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const validador = (date) => {
+        let errores = {};
+        if (typeof date !== "string") errores.name = "Debes ingresar un texto";
+        if (date.length > 10)
+          errores.name = "El texto ingresado debe se menor a 50 caracteres";
+        if (date.length <= 2)
+          errores.da = "El texto ingresado debe ser mayor a 2 caracteres";
+        return errores;
+      };
+
+      let str = 55;
+
+      console.log(validador(str));
+    </script>
+  </body>
+</html>

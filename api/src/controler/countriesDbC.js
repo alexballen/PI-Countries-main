@@ -21,7 +21,21 @@ const getCountryApi = async () => {
 
     await Country.bulkCreate(gApi);
 
-    /* gApi.forEach(async (e) => {
+    const allCountries = await Country.findAll({
+      include: Activities,
+    });
+
+    return allCountries;
+  } catch (error) {
+    console.log(error + " Error controler countriesDbC -> getCountryApi");
+  }
+};
+
+module.exports = {
+  getCountryApi,
+};
+
+/* gApi.forEach(async (e) => {
       await Country.findOrCreate({
         where: {
           id: e.id,
@@ -35,17 +49,3 @@ const getCountryApi = async () => {
         },
       });
     }); */
-
-    const allCountries = await Country.findAll({
-      include: Activities,
-    });
-
-    return allCountries;
-  } catch (error) {
-    console.log(error + "Error controler countriesDbC function getCountryApi");
-  }
-};
-
-module.exports = {
-  getCountryApi,
-};
