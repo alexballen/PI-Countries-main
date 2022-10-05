@@ -7,9 +7,9 @@ import {
   byActivities,
   orderByCountry,
   orderByPopulation,
-} from "../redux/actions";
-import Country from "./Country";
-import SearchBar from "./SearchBar";
+} from "../../redux/actions/index.js";
+import Country from "./Country.jsx";
+import SearchBar from "../search/SearchBar.jsx";
 import { Link } from "react-router-dom";
 
 const Countrys = () => {
@@ -18,7 +18,6 @@ const Countrys = () => {
 
   const countries = useSelector((state) => state.getCountries);
   const activities = useSelector((state) => state.getActivities);
-  console.log(activities);
 
   useEffect(() => {
     dispatch(getCountrys());
@@ -59,6 +58,9 @@ const Countrys = () => {
 
   return (
     <>
+      <div>
+        <Link to="/form">Form</Link>
+      </div>
       <div>
         <div>
           <button type="submit" onClick={(e) => handleLoad(e)}>

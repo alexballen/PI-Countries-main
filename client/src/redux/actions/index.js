@@ -13,7 +13,7 @@ import axios from "axios";
 export const getCountrys = () => {
   return async (dispatch) => {
     try {
-      const getCountries = await axios("http://localhost:3001/countries");
+      const getCountries = await axios.get("http://localhost:3001/countries");
       dispatch({
         type: GET_COUNTRYS,
         payload: getCountries.data,
@@ -27,7 +27,7 @@ export const getCountrys = () => {
 export const getNameSearch = (name) => {
   return async (dispatch) => {
     try {
-      const getName = await axios(
+      const getName = await axios.get(
         "http://localhost:3001/countries/?name=" + name
       );
       dispatch({
@@ -93,5 +93,14 @@ export const orderByPopulation = (payload) => {
   return {
     type: ORDER_BY_POPULATION,
     payload,
+  };
+};
+
+export const postActivities = (payload) => {
+  return async (dispatch) => {
+    const postActivitys = await axios.post(
+      "http://localhost:3001/activities",
+      payload
+    );
   };
 };

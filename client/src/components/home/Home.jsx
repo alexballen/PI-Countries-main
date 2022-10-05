@@ -1,5 +1,5 @@
 import React from "react";
-import Countrys from "./Countrys";
+import Countrys from "../countries/Countrys.jsx";
 
 const Home = () => {
   return (

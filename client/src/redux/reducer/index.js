@@ -7,6 +7,7 @@ import {
   GET_DETAIL,
   GET_ACTIVITY,
   BY_ACTIVITY,
+  POST_ACTIVITY,
 } from "../actionstypes/index.js";
 
 const initialState = {
@@ -86,6 +87,10 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         getCountries: getActiv,
+      };
+    case POST_ACTIVITY:
+      return {
+        ...state,
       };
     default:
       return state;

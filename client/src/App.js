@@ -1,8 +1,9 @@
 import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import LandingPage from "./components/LandingPage.jsx";
-import Home from "./components/Home.jsx";
-import Detail from "./components/Detail.jsx";
+import LandingPage from "./components/landing/LandingPage.jsx";
+import Home from "./components/home/Home.jsx";
+import Detail from "./components/detail/Detail.jsx";
+import Form from "./components/form/Form.jsx";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/countries" component={Home} />
           <Route exact path="/countries/:id" component={Detail} />
+          <Route exact path="/form" component={Form} />
         </Switch>
       </div>
     </BrowserRouter>

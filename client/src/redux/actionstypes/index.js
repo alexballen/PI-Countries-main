@@ -6,3 +6,4 @@ export const ORDER_BY_POPULATION = "ORDER_BY_POPULATION";
 export const GET_DETAIL = "GET_DETAIL";
 export const GET_ACTIVITY = "GET_ACTIVITY";
 export const BY_ACTIVITY = "BY_ACTIVITY";
+export const POST_ACTIVITY = "POST_ACTIVITY";

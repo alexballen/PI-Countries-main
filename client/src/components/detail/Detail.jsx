@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCountryId } from "../redux/actions/index.js";
+import { getCountryId } from "../../redux/actions/index.js";
 import { Link, useParams } from "react-router-dom";
-//import DetailCountry from "./DetailCountry.jsx";
 
 const Detail = () => {
   const dispatch = useDispatch();
