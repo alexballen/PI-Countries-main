@@ -1,0 +1,36 @@
+.paginado {
+  margin: 20px 0;
+}
+
+.paginado ul {
+  list-style: none;
+  text-align: center;
+}
+
+.paginado ul li {
+  display: inline-block;
+  margin-right: 2px;
+  padding: 5px;
+}
+
+.paginado ul li a {
+  display: block;
+  padding: 5px 15px;
+  border-radius: 5px;
+  color: #303030;
+  background: #ff6961;
+  text-decoration: none;
+}
+
+.paginado ul li a:hover {
+  background: #086d92;
+}
+
+.paginado ul li a .active {
+  background: #086d92;
+  font-weight: bold;
+}
+
+.paginado ul li a:focus {
+  background-color: #086d92;
+}

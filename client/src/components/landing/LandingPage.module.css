@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(https://www.stapleagro.com/themes/img/map.gif);
+  background-position: center center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.container p {
+  font-family: "Calibri", "Gill Sans MT", "Gill Sans", "Trebuchet MS",
+    sans-serif;
+  color: #ff6961;
+  margin-bottom: 40px;
+  font-size: 40px;
+}
+
+.link {
+  margin-bottom: 10px;
+  font-size: 30px;
+  text-decoration: none;
+  color: #ff6961;
+}
+
+/*
+https://www.stapleagro.com/themes/img/map.gif
+
+https://images.squarespace-cdn.com/content/v1/5572b7b4e4b0a20071d407d4/1530822944442-Z6LALQI0M4VS7YWFJWM1/GlobalReach_Final3.gif
+
+https://www.midwestpharm.com/wp-content/uploads/2018/10/Midwest-Global-presence1.gif
+
+https://content.presentermedia.com/content/animsp/00016000/16838/globe_image_300_wht.gif
+
+https://media0.giphy.com/media/a8yAv6o6GJtcI/giphy.gif
+
+*/

@@ -1,12 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import s from "./Country.module.css";
 
 const Country = ({ name, flags, continents }) => {
   return (
     <>
-      <div>
-        <img src={flags} alt="Not found img" width={350} height={250} />
-        <h3>{name}</h3>
-        <h4>continents: {continents}</h4>
+      <div className={s.container}>
+        <div>
+          <img src={flags} alt="Not found img" />
+          <div className={s.containerDiv}>
+            <h2>{name}</h2>
+          </div>
+          <h3>continents</h3>
+          <h4> {continents}</h4>
+        </div>
       </div>
     </>
   );

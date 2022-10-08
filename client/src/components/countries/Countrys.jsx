@@ -11,13 +11,31 @@ import {
 import Country from "./Country.jsx";
 import SearchBar from "../search/SearchBar.jsx";
 import { Link } from "react-router-dom";
+import Paginated from "../paginated/Paginated.jsx";
+import s from "./Countrys.module.css";
+import NavBar from "../nav/NavBar.jsx";
 
 const Countrys = () => {
   const dispatch = useDispatch();
-  const [order, setOrder] = useState("");
 
   const countries = useSelector((state) => state.getCountries);
   const activities = useSelector((state) => state.getActivities);
+
+  const [order, setOrder] = useState("");
+
+  const [paginaActual, setPaginaActual] = useState(1);
+  const [paisesPorPagina, setPaisesPorPagina] = useState(10);
+
+  const indiceUltimoPais = paginaActual * paisesPorPagina;
+  const indicePrimerPais = indiceUltimoPais - paisesPorPagina;
+  const paisActual =
+    paginaActual === 1
+      ? countries.slice(indicePrimerPais, indiceUltimoPais - 1)
+      : countries.slice(indicePrimerPais, indiceUltimoPais);
+
+  const paginado = (numPagina) => {
+    setPaginaActual(numPagina);
+  };
 
   useEffect(() => {
     dispatch(getCountrys());
@@ -58,45 +76,50 @@ const Countrys = () => {
 
   return (
     <>
-      <div>
-        <Link to="/form">Form</Link>
-      </div>
-      <div>
+      <div className={s.container}>
+        <NavBar />
+        <h1>knowing the world</h1>
         <div>
-          <button type="submit" onClick={(e) => handleLoad(e)}>
-            Load Countries
-          </button>
+          <div>
+            <button type="submit" onClick={(e) => handleLoad(e)}>
+              Load Countries
+            </button>
+          </div>
+          <select onChange={(e) => handleByContinent(e)}>
+            <option value={"Cont"}>Continents</option>
+            <option value={"All"}>All</option>
+            {continents.map((el) => (
+              <option value={el}>{el}</option>
+            ))}
+          </select>
+          <select onChange={(e) => handleByActvity(e)}>
+            <option value="All">Activities</option>
+            {activities.map((e) => (
+              <option value={e.name}>{e.name}</option>
+            ))}
+          </select>
+          <select onChange={(e) => handleByOrder(e)}>
+            <option value="Asc">A-Z</option>
+            <option value="Desc">Z-A</option>
+          </select>
+          <select onChange={(e) => handleByPopulation(e)}>
+            <option value="Max">Population Max</option>
+            <option value="Min">Population Min</option>
+          </select>
         </div>
-        <select onChange={(e) => handleByContinent(e)}>
-          <option value={"Cont"}>Continents</option>
-          <option value={"All"}>All</option>
-          {continents.map((el) => (
-            <option value={el}>{el}</option>
-          ))}
-        </select>
-        <select onChange={(e) => handleByActvity(e)}>
-          <option value="All">Activities</option>
-          {activities.map((e) => (
-            <option value={e.name}>{e.name}</option>
-          ))}
-        </select>
-        <select onChange={(e) => handleByOrder(e)}>
-          <option value="Asc">A-Z</option>
-          <option value="Desc">Z-A</option>
-        </select>
-        <select onChange={(e) => handleByPopulation(e)}>
-          <option value="Max">Population Max</option>
-          <option value="Min">Population Min</option>
-        </select>
+        <SearchBar />
+        <Paginated
+          paisesPorPagina={paisesPorPagina}
+          countries={countries.length}
+          paginado={paginado}
+        />
       </div>
-      <SearchBar />
-      <div>
-        <h1>Estas son mis Countrys</h1>
-        {countries
-          ? countries.map((e) => {
+      <div className={s.containerDos}>
+        {paisActual
+          ? paisActual.map((e) => {
               return (
                 <div>
-                  <Link to={"/countries/" + e.id}>
+                  <Link className={s.link} to={"/countries/" + e.id}>
                     <Country
                       key={e.id}
                       flags={e.flags}

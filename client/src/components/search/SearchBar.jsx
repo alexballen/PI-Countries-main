@@ -9,21 +9,22 @@ const SearchBar = () => {
   const handleInputChange = (e) => {
     e.preventDefault();
     setName(e.target.value);
-    console.log(name);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(getNameSearch(name));
+    document.getElementById("search").value = "";
   };
 
   return (
     <>
       <div>
         <input
+          id="search"
           type="text"
           placeholder="Search..."
-          autoComplete="on"
+          autoComplete="off"
           onChange={(e) => handleInputChange(e)}
         />
       </div>

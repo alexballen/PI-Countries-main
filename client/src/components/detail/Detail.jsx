@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCountryId } from "../../redux/actions/index.js";
 import { Link, useParams } from "react-router-dom";
+import s from "./Detail.module.css";
+import NavBar from "../nav/NavBar.jsx";
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -23,37 +25,60 @@ const Detail = () => {
   return (
     <>
       <div>
-        <Link to="/countries">Home</Link>
+        <NavBar />
       </div>
-      <div>
-        <h4>Este es mi detail</h4>
-        {
-          <div>
-            <h4>{<img src={det.flags} alt="not found" />}</h4>
-            <h4>{det.name}</h4>
-            <h4>continents: {det.continents}</h4>
-            <h4>capital: {det.capital}</h4>
-            <h4>subregion: {det.subregion}</h4>
-            <h4>area: {det.area}</h4>
-            <h4>population: {det.population}</h4>
-            <h3>Activities</h3>
-            <h4>{vacio(det.activities)}</h4>
-            <h4>
-              {det.activities
-                ? det.activities.map((e) => {
-                    return (
-                      <>
-                        <h4>name: {e.name}</h4>
-                        <h4>difficulty: {e.difficulty}</h4>
-                        <h4>duration: {e.duration}</h4>
-                        <h4>season: {e.season}</h4>
-                      </>
-                    );
-                  })
-                : ""}
-            </h4>
-          </div>
-        }
+      <div className={s.containerTotal}>
+        <div className={s.container}>
+          <h1>Country Detail</h1>
+          {
+            <div>
+              <h3>{<img src={det.flags} alt="not found" />}</h3>
+              <h1>{det.name}</h1>
+              <h2>Continents</h2>
+              <h3>{det.continents}</h3>
+              <h2>Capital</h2>
+              <h3> {det.capital}</h3>
+              <h2>Subregion</h2>
+              <h3>{det.subregion}</h3>
+              <h2>Area</h2>
+              <h3> {det.area}</h3>
+              <h2>Population</h2>
+              <h3>{det.population}</h3>
+            </div>
+          }
+        </div>
+        <div>
+          <h3 className={s.title}>Activities</h3>
+          <h3>{vacio(det.activities)}</h3>
+
+          <h3>
+            {det.activities
+              ? det.activities.map((e) => {
+                  return (
+                    <>
+                      <div className={s.contActvities}>
+                        <h3>
+                          Name<p>{e.name}</p>
+                        </h3>
+
+                        <h3>
+                          difficulty<p>{e.difficulty}</p>
+                        </h3>
+
+                        <h3>
+                          duration<p>{e.duration}</p>
+                        </h3>
+
+                        <h3>
+                          season <p>{e.season}</p>
+                        </h3>
+                      </div>
+                    </>
+                  );
+                })
+              : ""}
+          </h3>
+        </div>
       </div>
     </>
   );
