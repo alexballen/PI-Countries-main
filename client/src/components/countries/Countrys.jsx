@@ -21,10 +21,10 @@ const Countrys = () => {
   const countries = useSelector((state) => state.getCountries);
   const activities = useSelector((state) => state.getActivities);
 
-  const [order, setOrder] = useState("");
+  const [, setOrder] = useState("");
 
   const [paginaActual, setPaginaActual] = useState(1);
-  const [paisesPorPagina, setPaisesPorPagina] = useState(10);
+  const [paisesPorPagina] = useState(10);
 
   const indiceUltimoPais = paginaActual * paisesPorPagina;
   const indicePrimerPais = indiceUltimoPais - paisesPorPagina;
@@ -78,7 +78,7 @@ const Countrys = () => {
     <>
       <div className={s.container}>
         <NavBar />
-        <h1>knowing the world</h1>
+        <h1>Knowing The World</h1>
         <div>
           <div>
             <button type="submit" onClick={(e) => handleLoad(e)}>
@@ -99,10 +99,12 @@ const Countrys = () => {
             ))}
           </select>
           <select onChange={(e) => handleByOrder(e)}>
+            <option>Order</option>
             <option value="Asc">A-Z</option>
             <option value="Desc">Z-A</option>
           </select>
           <select onChange={(e) => handleByPopulation(e)}>
+            <option>Population</option>
             <option value="Max">Population Max</option>
             <option value="Min">Population Min</option>
           </select>

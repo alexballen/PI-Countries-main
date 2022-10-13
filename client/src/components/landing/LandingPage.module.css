@@ -31,11 +31,23 @@ body {
   font-size: 40px;
 }
 
+.button {
+  background: #ff6961;
+  border-radius: 10px;
+  border: solid #303030 2px;
+}
+
+.button:hover {
+  background: #03c9f4;
+}
+
 .link {
   margin-bottom: 10px;
   font-size: 30px;
   text-decoration: none;
-  color: #ff6961;
+  color: white;
+  font-family: monospace;
+  padding: 10px;
 }
 
 /*

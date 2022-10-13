@@ -7,9 +7,11 @@ const LandingPage = () => {
     <>
       <div>
         <div className={s.container}>
-          <Link className={s.link} to="/countries">
-            ...We Go...
-          </Link>
+          <button className={s.button}>
+            <Link className={s.link} to="/countries">
+              Go...
+            </Link>
+          </button>
           <div>
             <p>knowing the world</p>
           </div>

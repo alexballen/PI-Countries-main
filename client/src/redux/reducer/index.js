@@ -26,6 +26,7 @@ export default function rootReducer(state = initialState, action) {
         getCountries: action.payload,
         byContinent: action.payload,
         byActivities: action.payload,
+        delete: action.payload,
       };
     case GET_COUNTRY_SEARCH:
       return {
@@ -91,6 +92,11 @@ export default function rootReducer(state = initialState, action) {
     case POST_ACTIVITY:
       return {
         ...state,
+      };
+    case "CLEAR":
+      return {
+        ...state,
+        detail: [],
       };
     default:
       return state;

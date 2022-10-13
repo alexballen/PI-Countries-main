@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCountryId } from "../../redux/actions/index.js";
-import { Link, useParams } from "react-router-dom";
+import { getCountryId, clear } from "../../redux/actions/index.js";
+import { useParams, Link } from "react-router-dom";
 import s from "./Detail.module.css";
-import NavBar from "../nav/NavBar.jsx";
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -14,6 +13,7 @@ const Detail = () => {
 
   useEffect(() => {
     dispatch(getCountryId(id));
+    dispatch(clear());
   }, [dispatch, id]);
 
   function vacio(err = []) {
@@ -24,16 +24,24 @@ const Detail = () => {
 
   return (
     <>
-      <div>
-        <NavBar />
+      <div className={s.contButton}>
+        <button className={s.button}>
+          <Link to="/countries">Home</Link>
+        </button>
       </div>
       <div className={s.containerTotal}>
         <div className={s.container}>
-          <h1>Country Detail</h1>
+          <div className={s.contTitle}>
+            <h1>Country Detail</h1>
+          </div>
           {
-            <div>
-              <h3>{<img src={det.flags} alt="not found" />}</h3>
-              <h1>{det.name}</h1>
+            <div className={s.regisDiv}>
+              <div className={s.contImg}>
+                {<img src={det.flags} alt="not found" />}
+              </div>
+              <div className={s.contName}>
+                <h1>{det.name}</h1>
+              </div>
               <h2>Continents</h2>
               <h3>{det.continents}</h3>
               <h2>Capital</h2>

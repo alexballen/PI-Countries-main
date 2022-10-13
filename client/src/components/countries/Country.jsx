@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import s from "./Country.module.css";
 
 const Country = ({ name, flags, continents }) => {

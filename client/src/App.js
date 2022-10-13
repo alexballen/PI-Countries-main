@@ -4,7 +4,6 @@ import LandingPage from "./components/landing/LandingPage.jsx";
 import Home from "./components/home/Home.jsx";
 import Detail from "./components/detail/Detail.jsx";
 import Form from "./components/form/Form.jsx";
-import Nav from "./components/nav/NavBar.jsx";
 
 function App() {
   return (

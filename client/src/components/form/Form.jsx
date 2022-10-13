@@ -1,17 +1,53 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { getCountrys, postActivities } from "../../redux/actions/index.js";
+import {
+  getCountrys,
+  postActivities,
+  getActivitys,
+} from "../../redux/actions/index.js";
 import NavBar from "../nav/NavBar.jsx";
 import s from "./Form.module.css";
+
+const validationsForms = (form) => {
+  let errors = {};
+
+  let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
+
+  if (!form.name.trim()) {
+    errors.name = "Enter a name";
+  } else if (!regexName.test(form.name.trim())) {
+    errors.name = "The name field only accepts letters and blank spaces";
+  }
+
+  if (form.difficulty === "") {
+    errors.difficulty = "Select a value";
+  } else if (form.difficulty === "Choose") {
+    errors.difficulty = "Select a value";
+  }
+
+  if (form.duration === "") {
+    errors.duration = "Select a value";
+  } else if (form.duration === "Choose") {
+    errors.duration = "Select a value";
+  }
+
+  if (form.season === "") {
+    errors.season = "Select a season";
+  } else if (form.season === "Choose") {
+    errors.season = "Select a season";
+  }
+
+  if (form.countries.length === 0) {
+    errors.countries = "Select the countries for this activity";
+  }
+
+  return errors;
+};
 
 const Form = () => {
   const dispatch = useDispatch();
   const getCountry = useSelector((state) => state.getCountries);
-
-  useEffect(() => {
-    dispatch(getCountrys());
-  }, [dispatch]);
+  const getActivities = useSelector((state) => state.getActivities);
 
   const [activitys, setActivitys] = useState({
     name: "",
@@ -23,35 +59,10 @@ const Form = () => {
 
   const [error, setError] = useState({});
 
-  const validationsForms = (form) => {
-    let errors = {};
-
-    let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
-
-    if (!form.name.trim()) {
-      errors.name = "Enter a name";
-    } else if (!regexName.test(form.name.trim())) {
-      errors.name = "El campo nombre solo acepta letras y espacios en blanco";
-    }
-
-    if (form.difficulty === "Choose") {
-      errors.difficulty = "Select a value 1";
-    }
-
-    if (form.duration === "Choose") {
-      errors.duration = "Select a value 2";
-    }
-
-    if (form.season === "Choose") {
-      errors.season = "Select a value 3";
-    }
-
-    if (form.countries.length === 0) {
-      errors.countries = "Select a countries";
-    }
-
-    return errors;
-  };
+  useEffect(() => {
+    dispatch(getCountrys());
+    dispatch(getActivitys());
+  }, [dispatch]);
 
   const handleChange = (e) => {
     setActivitys({
@@ -82,16 +93,39 @@ const Form = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(postActivities(activitys));
-    setError(validationsForms(activitys));
+    if (!activitys.name) {
+      alert("You must enter a Name");
+    } else if (
+      getActivities.find(
+        (e) => e.name.toLowerCase() === activitys.name.toLowerCase()
+      )
+    ) {
+      alert("The entered country name already exists");
+    } else if (activitys.difficulty === "") {
+      alert("You must select a value in the Difficulty field");
+    } else if (activitys.duration === "") {
+      alert("You must select a value in the Duration field");
+    } else if (activitys.season === "") {
+      alert("You must select a Season");
+    } else {
+      dispatch(postActivities(activitys));
+      setError(validationsForms(activitys));
+      setActivitys({
+        name: "",
+        difficulty: "",
+        duration: "",
+        season: "",
+        countries: [],
+      });
+      alert("Activities was created successfully");
+    }
+  };
+
+  const handleDelete = (e) => {
     setActivitys({
-      name: "",
-      difficulty: "",
-      duration: "",
-      season: "",
-      countries: [],
+      ...activitys,
+      countries: activitys.countries.filter((c) => c !== e),
     });
-    alert("Activities fue creado");
   };
 
   const difficulty = ["1", "2", "3", "4", "5"];
@@ -107,8 +141,8 @@ const Form = () => {
         <NavBar />
       </div>
       <form onSubmit={(e) => handleSubmit(e)}>
-        <div className={s.container}>
-          <div className={s.containerDiv}>
+        <div className={s.containerForm}>
+          <div className={s.containerActivitys}>
             <label>Name</label>
             <input
               name="name"
@@ -116,7 +150,6 @@ const Form = () => {
               onBlur={(e) => handleBlur(e)}
               value={activitys.name}
               onChange={(e) => handleChange(e)}
-              //required
             />
             {error.name ? (
               <h4>
@@ -126,7 +159,7 @@ const Form = () => {
               false
             )}
           </div>
-          <div className={s.containerDiv}>
+          <div className={s.containerActivitys}>
             <label>Difficulty</label>
             <select
               name="difficulty"
@@ -147,7 +180,7 @@ const Form = () => {
               false
             )}
           </div>
-          <div className={s.containerDiv}>
+          <div className={s.containerActivitys}>
             <label>Duration</label>
             <select
               name="duration"
@@ -168,7 +201,7 @@ const Form = () => {
               false
             )}
           </div>
-          <div className={s.containerDiv}>
+          <div className={s.containerActivitys}>
             <label>Season</label>
             <select
               name="season"
@@ -189,7 +222,7 @@ const Form = () => {
               false
             )}
           </div>
-          <div className={s.containerDiv}>
+          <div className={s.containerActivitys}>
             <label>Countries</label>
             <select
               name="countrie"
@@ -209,24 +242,31 @@ const Form = () => {
             ) : (
               false
             )}
-            <div>
-              <ul className={s.containerDivDos}>
-                <li className={s.flexitem}>
-                  {activitys.countries.map((e) => (
-                    <button>{e}</button>
-                  ))}
-                </li>
-              </ul>
-            </div>
-
-            <button type="submit">Crear Activities</button>
+            <button
+              type="submit"
+              disabled={Object.keys(error).length < 1 ? false : true}
+            >
+              Create activities
+            </button>
           </div>
         </div>
       </form>
+      <div>
+        <ul className={s.containerUl}>
+          <li className={s.containerLi}>
+            {activitys.countries.map((e) => (
+              <button className={s.buttonMap}>
+                {e}
+                <button className={s.buttonX} onClick={() => handleDelete(e)}>
+                  X
+                </button>
+              </button>
+            ))}
+          </li>
+        </ul>
+      </div>
     </>
   );
 };
 
 export default Form;
-
-//{Object.keys(error).length < 1 ? false : true}

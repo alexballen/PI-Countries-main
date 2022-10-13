@@ -54,6 +54,12 @@ export const getCountryId = (id) => {
   };
 };
 
+export const clear = () => {
+  return {
+    type: "CLEAR",
+  };
+};
+
 export const getActivitys = () => {
   return async (dispatch) => {
     try {
@@ -63,7 +69,7 @@ export const getActivitys = () => {
         payload: getAct.data,
       });
     } catch (error) {
-      console.log(error + "Error actions getActivitys");
+      console.log(error + "Error actions -> getActivitys");
     }
   };
 };
@@ -98,9 +104,10 @@ export const orderByPopulation = (payload) => {
 
 export const postActivities = (payload) => {
   return async (dispatch) => {
-    const postActivitys = await axios.post(
-      "http://localhost:3001/activities",
-      payload
-    );
+    try {
+      await axios.post("http://localhost:3001/activities", payload);
+    } catch (error) {
+      console.log(error + "Error actions -> postActivities");
+    }
   };
 };

@@ -1,26 +1,22 @@
 const { Country, Activities } = require("../db");
 
-const validador = (date) => {
+/* const validador = (data) => {
   let errores = {};
-  if (typeof date !== "string") {
-    return (errores.date = "Debes ingresar un texto");
-  }
-
-  if (date.length > 5) {
+   if (typeof date !== "string") {
+    errores.date = "Debes ingresar un texto";
+  } else if (data.length > 5) {
     return (errores.name = "El texto ingresado debe se menor a 50 caracteres");
-  }
-
-  if (date.length <= 2) {
+  } else if (data.length <= 2) {
     return (errores = "El texto ingresado debe ser mayor a 2 caracteres");
   }
   return errores;
-};
+}; */
 
 const postActivities = async (req, res) => {
   const { name, difficulty, duration, season, countries } = req.body;
   /* if (name) {
     if (Object.keys(validador(name)).length > 0) {
-      return res.json(validador());
+      return res.status(404).json(validador());
     }
   } */
 
@@ -32,7 +28,6 @@ const postActivities = async (req, res) => {
       season,
     });
 
-    //pendiente probar con addCountries
     await activCreated.setCountries(countries);
 
     const activitys = await Activities.findOne({

@@ -11,6 +11,30 @@ body {
   min-height: 100%;
 }
 
+.button {
+  background: #251f1f;
+  width: 110px;
+  height: 30px;
+  border: solid 1px;
+  border-radius: 5px;
+}
+
+.button a {
+  padding: 0px 1px 0px 1px;
+  color: #ff6961;
+  text-decoration: none;
+  border-radius: 3%;
+}
+
+.contButton {
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+  position: fixed;
+  width: 100%;
+  background: #251f1f;
+}
+
 .containerTotal {
   display: flex;
   flex-direction: column;
@@ -25,32 +49,100 @@ body {
   /* flex-wrap: wrap; */
   justify-content: center;
   align-items: center;
-  width: 500px;
+  width: auto;
   height: auto;
   border: 0.5px solid #303030;
-  padding: 2px;
+  padding-left: 20px;
+  padding-right: 20px;
   border-radius: 15px;
-  background: #086d92;
+  background: #03c9f4;
+  background: linear-gradient(#dae6e9, #03c9f4);
+}
+
+.contTitle {
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  align-items: center;
+  padding: 5px;
+  padding-top: 0px;
+  margin: 20px;
+  background: #303030;
+  width: auto;
+  border-radius: 10px;
+}
+.contTitle h1 {
+  color: white;
+}
+
+.contName {
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  align-items: center;
+  padding: 2px;
+  padding-top: 0px;
+  margin: 20px;
+  background: #303030;
+  width: auto;
+  border-radius: 10px;
+}
+.contName h1 {
+  color: white;
+}
+
+.contImg {
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  align-items: center;
+  padding: 15px;
+  background: white;
+  border-radius: 10px;
 }
 
 .container img {
-  width: 70%;
-  height: 70%;
+  width: 250px;
+  height: 150px;
 }
 
-.container h1 {
+/* .container h1 {
   color: #ff6961;
-  /* border-radius: 0; */
-}
+  border-radius: 0;
+}  */
 
 .container h2 {
-  color: #303030;
+  color: white;
   /* line-height: 10px; */
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  align-items: center;
+  padding: 5px;
+  padding-top: 0px;
+  margin: 5px;
+  background: #303030;
+  width: auto;
+  border-radius: 10px;
 }
 
 .container h3 {
   color: #ff6961;
   /* line-height: 10px; */
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  align-items: center;
+  padding: 5px;
+  padding-top: 0px;
+  margin: 5px;
+  background: #3e3a3a;
+  width: auto;
+  border-radius: 10px;
+}
+
+.regisDiv {
+  padding-bottom: 20px;
 }
 
 .container p {

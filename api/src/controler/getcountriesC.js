@@ -13,7 +13,7 @@ const getCountryQ = async (req, res) => {
       const getQName = await Country.findAll({
         where: {
           name: {
-            [Op.iLike]: `${name}`,
+            [Op.iLike]: `%${name}%`,
           },
         },
         include: Activities,
@@ -21,7 +21,7 @@ const getCountryQ = async (req, res) => {
       if (getQName.length === 0) {
         return res
           .status(404)
-          .json({ error: `No se encotro el pais con nombre ${name}` });
+          .json({ error: `No se encontro el pais con nombre ${name}` });
       } else {
         return res.json(getQName);
       }
