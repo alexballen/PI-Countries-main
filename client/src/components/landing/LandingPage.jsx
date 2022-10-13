@@ -13,7 +13,7 @@ const LandingPage = () => {
             </Link>
           </button>
           <div>
-            <p>knowing the world</p>
+            <p>Knowing The World</p>
           </div>
         </div>
       </div>

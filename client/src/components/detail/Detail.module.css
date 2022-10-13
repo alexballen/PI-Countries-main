@@ -151,15 +151,15 @@ body {
 
 .contActvities {
   margin-top: 20px;
-  display: block;
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  width: auto;
+  width: 700px;
   border: 0.5px solid #303030;
   padding: 10px;
   border-radius: 15px;
-  background: #086d92;
+  background: linear-gradient(#dae6e9, #03c9f4);
 }
 
 .contActvities h3 {
@@ -176,6 +176,13 @@ body {
   color: #ff6961;
   margin-top: 10px;
   font-size: 30px;
+}
+
+.controlDiv {
+  width: 150px;
+  height: auto;
+  padding: 0px;
+  margin: 0px;
 }
 
 /* .name {

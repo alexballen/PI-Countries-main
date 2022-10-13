@@ -65,19 +65,19 @@ const Detail = () => {
                   return (
                     <>
                       <div className={s.contActvities}>
-                        <h3>
+                        <h3 className={s.controlDiv}>
                           Name<p>{e.name}</p>
                         </h3>
 
-                        <h3>
+                        <h3 className={s.controlDiv}>
                           difficulty<p>{e.difficulty}</p>
                         </h3>
 
-                        <h3>
+                        <h3 className={s.controlDiv}>
                           duration<p>{e.duration}</p>
                         </h3>
 
-                        <h3>
+                        <h3 className={s.controlDiv}>
                           season <p>{e.season}</p>
                         </h3>
                       </div>
