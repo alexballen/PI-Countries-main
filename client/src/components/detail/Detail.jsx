@@ -13,7 +13,9 @@ const Detail = () => {
 
   useEffect(() => {
     dispatch(getCountryId(id));
-    dispatch(clear());
+    return () => {
+      dispatch(clear());
+    };
   }, [dispatch, id]);
 
   function vacio(err = []) {

@@ -6,25 +6,33 @@ const getCountryQ = async (req, res) => {
   const name = req.query.name;
 
   try {
+    const allCountry = await Country.findAll({ include: Activities });
     if (!name) {
-      const allCountry = await Country.findAll({ include: Activities });
       return res.json(allCountry);
     } else {
-      const getQName = await Country.findAll({
+      const getQName = await allCountry.filter((e) =>
+        e.name.toLowerCase().startsWith(name.toLowerCase())
+      );
+      getQName.length
+        ? res.json(getQName)
+        : res
+            .status(404)
+            .json({ error: `No se encontro el pais con nombre ${name}` });
+      /* const getQName = await Country.findAll({
         where: {
           name: {
-            [Op.iLike]: `%${name}%`,
+            [Op.iLike]: `${name}`,
           },
         },
         include: Activities,
-      });
-      if (getQName.length === 0) {
+      }); */
+      /* if (getQName.length === 0) {
         return res
           .status(404)
           .json({ error: `No se encontro el pais con nombre ${name}` });
       } else {
         return res.json(getQName);
-      }
+      } */
     }
   } catch (error) {
     console.log(error + " Error controler getcountriesC -> getCountry");
@@ -52,6 +60,14 @@ const getCountryP = async (req, res) => {
   } catch (error) {
     console.log(error + " Error controler getcountriesC -> getCountryP");
   }
+};
+
+const deletCountry = (req, res) => {
+  const { id } = req.params;
+
+  /*  if (id) {
+    const eliminado = Country.findByPk(id, { include: Activities });
+  } */
 };
 
 module.exports = {

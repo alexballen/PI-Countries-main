@@ -13,7 +13,6 @@ import SearchBar from "../search/SearchBar.jsx";
 import { Link } from "react-router-dom";
 import Paginated from "../paginated/Paginated.jsx";
 import s from "./Countrys.module.css";
-import NavBar from "../nav/NavBar.jsx";
 
 const Countrys = () => {
   const dispatch = useDispatch();
@@ -21,10 +20,10 @@ const Countrys = () => {
   const countries = useSelector((state) => state.getCountries);
   const activities = useSelector((state) => state.getActivities);
 
-  const [, setOrder] = useState("");
+  const [order, setOrder] = useState("");
 
   const [paginaActual, setPaginaActual] = useState(1);
-  const [paisesPorPagina] = useState(10);
+  const [paisesPorPagina, setPaisesPorPagina] = useState(10);
 
   const indiceUltimoPais = paginaActual * paisesPorPagina;
   const indicePrimerPais = indiceUltimoPais - paisesPorPagina;
@@ -45,13 +44,13 @@ const Countrys = () => {
   const handleLoad = (e) => {
     e.preventDefault();
     dispatch(getCountrys());
-    setOrder(e.target.value);
+    setPaginaActual(1);
   };
 
   const handleByContinent = (e) => {
     e.preventDefault();
     dispatch(getContinent(e.target.value));
-    setOrder(e.target.value);
+    setPaginaActual(1);
   };
 
   const continents = [...new Set(countries.map((el) => el.continents))];
@@ -59,7 +58,7 @@ const Countrys = () => {
   const handleByActvity = (e) => {
     e.preventDefault();
     dispatch(byActivities(e.target.value));
-    setOrder(e.target.value);
+    /* setOrder(e.target.value); */
   };
 
   const handleByOrder = (e) => {
@@ -76,15 +75,20 @@ const Countrys = () => {
 
   return (
     <>
-      <div className={s.container}>
-        <NavBar />
+      <div className={s.barraNav}>
         <h1>Knowing The World</h1>
-        <div>
-          <div>
-            <button type="submit" onClick={(e) => handleLoad(e)}>
-              Load Countries
-            </button>
-          </div>
+        <button>
+          <Link className={s.link} to="/form">
+            ADD ACTIVITY
+          </Link>
+        </button>
+        <SearchBar />
+      </div>
+      <div className={s.container}>
+        <div className={s.filtros}>
+          <button type="submit" onClick={(e) => handleLoad(e)}>
+            Load Countries
+          </button>
           <select onChange={(e) => handleByContinent(e)}>
             <option value={"Cont"}>Continents</option>
             <option value={"All"}>All</option>
@@ -109,7 +113,6 @@ const Countrys = () => {
             <option value="Min">Population Min</option>
           </select>
         </div>
-        <SearchBar />
         <Paginated
           paisesPorPagina={paisesPorPagina}
           countries={countries.length}
@@ -121,7 +124,7 @@ const Countrys = () => {
           ? paisActual.map((e) => {
               return (
                 <div>
-                  <Link className={s.link} to={"/countries/" + e.id}>
+                  <Link className={s.link2} to={"/countries/" + e.id}>
                     <Country
                       key={e.id}
                       flags={e.flags}

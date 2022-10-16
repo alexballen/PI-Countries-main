@@ -8,11 +8,9 @@
 }
 
 .navbar {
-  background-color: #251f1f;
+  background-color: white;
   text-decoration: none;
-  width: auto;
-  position: sticky;
-  margin-bottom: 20px;
+  width: 100%;
 }
 
 .navbar a:hover {
@@ -33,6 +31,7 @@
   width: 110px;
   height: 30px;
   border: solid 1px;
+  margin: 0px;
 }
 .navbar a.active {
   color: rgb(90, 90, 90);
