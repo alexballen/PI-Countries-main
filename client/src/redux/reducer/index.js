@@ -8,6 +8,8 @@ import {
   GET_ACTIVITY,
   BY_ACTIVITY,
   POST_ACTIVITY,
+  PAGE_PAGINATED,
+  BY_CONT_ACTI,
 } from "../actionstypes/index.js";
 
 const initialState = {
@@ -16,6 +18,8 @@ const initialState = {
   byActivities: [],
   getActivities: [],
   detail: [],
+  page: 1,
+  byContActi: "",
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -29,9 +33,12 @@ export default function rootReducer(state = initialState, action) {
         delete: action.payload,
       };
     case GET_COUNTRY_SEARCH:
+      let filteredCountries = state.byContinent.filter((country) =>
+        country.name.toLowerCase().includes(action.payload.toLowerCase())
+      );
       return {
         ...state,
-        getCountries: action.payload,
+        getCountries: filteredCountries,
       };
     case GET_DETAIL:
       return {
@@ -70,13 +77,26 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         getCountries: orderPopulation,
       };
-    case GET_ACTIVITY:
+    case BY_CONT_ACTI:
       return {
         ...state,
-        getActivities: action.payload,
+        byContActi: action.payload,
+      };
+    case GET_ACTIVITY:
+      const byContActiv = state.byContActi;
+      const contiActiv = action.payload;
+      const filterConti =
+        byContActiv === "All" || byContActiv === "Cont"
+          ? contiActiv
+          : contiActiv.filter((c) =>
+              c.countries.find((cou) => cou.continents === byContActiv)
+            );
+      return {
+        ...state,
+        getActivities: filterConti,
       };
     case BY_ACTIVITY:
-      const byActivities = state.byActivities;
+      const byActivities = state.byContinent;
       const getActiv =
         action.payload === "All"
           ? byActivities.filter((e) => e.activities.length > 0)
@@ -97,6 +117,11 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         detail: [],
+      };
+    case PAGE_PAGINATED:
+      return {
+        ...state,
+        page: action.payload,
       };
     default:
       return state;

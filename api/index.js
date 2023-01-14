@@ -22,7 +22,7 @@ const { conn } = require("./src/db.js");
 const { getCountryApi } = require("./src/controler/countriesDbC.js");
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(async () => {
+conn.sync({ force: false, alter: false }).then(async () => {
   await getCountryApi();
   server.listen(3001, () => {
     console.log("%s listening at 3001"); // eslint-disable-line no-console

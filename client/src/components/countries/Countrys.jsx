@@ -7,6 +7,8 @@ import {
   byActivities,
   orderByCountry,
   orderByPopulation,
+  currentPagePaginated,
+  byActivityAndContinent,
 } from "../../redux/actions/index.js";
 import Country from "./Country.jsx";
 import SearchBar from "../search/SearchBar.jsx";
@@ -19,10 +21,11 @@ const Countrys = () => {
 
   const countries = useSelector((state) => state.getCountries);
   const activities = useSelector((state) => state.getActivities);
+  const page = useSelector((state) => state.page);
 
   const [order, setOrder] = useState("");
 
-  const [paginaActual, setPaginaActual] = useState(1);
+  const [paginaActual, setPaginaActual] = useState(page);
   const [paisesPorPagina, setPaisesPorPagina] = useState(10);
 
   const indiceUltimoPais = paginaActual * paisesPorPagina;
@@ -33,24 +36,31 @@ const Countrys = () => {
       : countries.slice(indicePrimerPais, indiceUltimoPais);
 
   const paginado = (numPagina) => {
+    dispatch(currentPagePaginated(numPagina));
     setPaginaActual(numPagina);
   };
 
   useEffect(() => {
-    dispatch(getCountrys());
+    if (countries < 1) {
+      dispatch(getCountrys());
+    }
     dispatch(getActivitys());
   }, [dispatch]);
 
   const handleLoad = (e) => {
     e.preventDefault();
     dispatch(getCountrys());
-    setPaginaActual(1);
+    setPaginaActual(page);
+    document.getElementById("search").value = "";
   };
 
   const handleByContinent = (e) => {
     e.preventDefault();
     dispatch(getContinent(e.target.value));
+    dispatch(byActivityAndContinent(e.target.value));
+    dispatch(currentPagePaginated(1));
     setPaginaActual(1);
+    dispatch(getActivitys());
   };
 
   const continents = [...new Set(countries.map((el) => el.continents))];
@@ -58,7 +68,8 @@ const Countrys = () => {
   const handleByActvity = (e) => {
     e.preventDefault();
     dispatch(byActivities(e.target.value));
-    /* setOrder(e.target.value); */
+    dispatch(currentPagePaginated(1));
+    setPaginaActual(1);
   };
 
   const handleByOrder = (e) => {
@@ -75,55 +86,61 @@ const Countrys = () => {
 
   return (
     <>
-      <div className={s.barraNav}>
-        <h1>Knowing The World</h1>
-        <button>
-          <Link className={s.link} to="/form">
-            ADD ACTIVITY
-          </Link>
-        </button>
-        <SearchBar />
-      </div>
-      <div className={s.container}>
-        <div className={s.filtros}>
-          <button type="submit" onClick={(e) => handleLoad(e)}>
-            Load Countries
+      <div className={s.headcontainer}>
+        <div className={s.barraNav}>
+          <h1>Knowing The World</h1>
+          <button className={s.buttonLink}>
+            <Link className={s.link} to="/form">
+              ADD ACTIVITY
+            </Link>
           </button>
-          <select onChange={(e) => handleByContinent(e)}>
-            <option value={"Cont"}>Continents</option>
-            <option value={"All"}>All</option>
-            {continents.map((el) => (
-              <option value={el}>{el}</option>
-            ))}
-          </select>
-          <select onChange={(e) => handleByActvity(e)}>
-            <option value="All">Activities</option>
-            {activities.map((e) => (
-              <option value={e.name}>{e.name}</option>
-            ))}
-          </select>
-          <select onChange={(e) => handleByOrder(e)}>
-            <option>Order</option>
-            <option value="Asc">A-Z</option>
-            <option value="Desc">Z-A</option>
-          </select>
-          <select onChange={(e) => handleByPopulation(e)}>
-            <option>Population</option>
-            <option value="Max">Population Max</option>
-            <option value="Min">Population Min</option>
-          </select>
+          <SearchBar />
         </div>
-        <Paginated
-          paisesPorPagina={paisesPorPagina}
-          countries={countries.length}
-          paginado={paginado}
-        />
+        <div className={s.container}>
+          <div className={s.filtros}>
+            <button type="submit" onClick={(e) => handleLoad(e)}>
+              Load Countries
+            </button>
+            <select onChange={(e) => handleByContinent(e)}>
+              <option value={"Cont"}>Continents</option>
+              <option value={"All"}>All</option>
+              {continents.map((el, i) => (
+                <option key={i} value={el}>
+                  {el}
+                </option>
+              ))}
+            </select>
+            <select onChange={(e) => handleByActvity(e)}>
+              <option value="All">Activities</option>
+              {activities.map((e, i) => (
+                <option key={i} value={e.name}>
+                  {e.name}
+                </option>
+              ))}
+            </select>
+            <select onChange={(e) => handleByOrder(e)}>
+              <option>Order</option>
+              <option value="Asc">A-Z</option>
+              <option value="Desc">Z-A</option>
+            </select>
+            <select onChange={(e) => handleByPopulation(e)}>
+              <option>Population</option>
+              <option value="Max">Population Max</option>
+              <option value="Min">Population Min</option>
+            </select>
+          </div>
+          <Paginated
+            paisesPorPagina={paisesPorPagina}
+            countries={countries.length}
+            paginado={paginado}
+          />
+        </div>
       </div>
       <div className={s.containerDos}>
         {paisActual
-          ? paisActual.map((e) => {
+          ? paisActual.map((e, i) => {
               return (
-                <div>
+                <div key={i}>
                   <Link className={s.link2} to={"/countries/" + e.id}>
                     <Country
                       key={e.id}

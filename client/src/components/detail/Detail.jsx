@@ -9,7 +9,6 @@ const Detail = () => {
   let { id } = useParams();
 
   const det = useSelector((state) => state.detail);
-  console.log("Este console det", det);
 
   useEffect(() => {
     dispatch(getCountryId(id));

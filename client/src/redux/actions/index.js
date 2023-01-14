@@ -7,6 +7,8 @@ import {
   GET_DETAIL,
   GET_ACTIVITY,
   BY_ACTIVITY,
+  PAGE_PAGINATED,
+  BY_CONT_ACTI,
 } from "../actionstypes/index.js";
 import axios from "axios";
 
@@ -24,7 +26,14 @@ export const getCountrys = () => {
   };
 };
 
-export const getNameSearch = (name) => {
+export const getNameSearch = (input) => (dispatch) => {
+  dispatch({
+    type: GET_COUNTRY_SEARCH,
+    payload: input,
+  });
+};
+
+/* export const getNameSearch = (name) => {
   return async (dispatch) => {
     try {
       const getName = await axios.get(
@@ -38,7 +47,7 @@ export const getNameSearch = (name) => {
       console.log(error + " Error actions -> getNameSearch");
     }
   };
-};
+}; */
 
 export const getCountryId = (id) => {
   return async (dispatch) => {
@@ -110,4 +119,18 @@ export const postActivities = (payload) => {
       console.log(error + "Error actions -> postActivities");
     }
   };
+};
+
+export const currentPagePaginated = (page) => async (dispatch) => {
+  dispatch({
+    type: PAGE_PAGINATED,
+    payload: page,
+  });
+};
+
+export const byActivityAndContinent = (cont) => async (dispatch) => {
+  dispatch({
+    type: BY_CONT_ACTI,
+    payload: cont,
+  });
 };

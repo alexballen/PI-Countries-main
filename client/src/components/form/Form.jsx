@@ -137,133 +137,135 @@ const Form = () => {
 
   return (
     <>
-      <div>
-        <NavBar />
-      </div>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <div className={s.containerForm}>
-          <div className={s.containerActivitys}>
-            <label>Name</label>
-            <input
-              name="name"
-              autoComplete="off"
-              onBlur={(e) => handleBlur(e)}
-              value={activitys.name}
-              onChange={(e) => handleChange(e)}
-            />
-            {error.name ? (
-              <h4>
-                <small>{error.name}</small>
-              </h4>
-            ) : (
-              false
-            )}
-          </div>
-          <div className={s.containerActivitys}>
-            <label>Difficulty</label>
-            <select
-              name="difficulty"
-              value={activitys.difficulty}
-              onBlur={(e) => handleBlur(e)}
-              onChange={(e) => handleSelectEnum(e)}
-            >
-              <option value="Choose">Choose</option>
-              {difficulty.map((d) => (
-                <option value={d}>{d}</option>
-              ))}
-            </select>
-            {error.difficulty ? (
-              <h4>
-                <small>{error.difficulty}</small>
-              </h4>
-            ) : (
-              false
-            )}
-          </div>
-          <div className={s.containerActivitys}>
-            <label>Duration</label>
-            <select
-              name="duration"
-              value={activitys.duration}
-              onBlur={(e) => handleBlur(e)}
-              onChange={(e) => handleSelectEnum(e)}
-            >
-              <option value="Choose">Choose</option>
-              {duration.map((d) => (
-                <option value={d}>{d}</option>
-              ))}
-            </select>
-            {error.duration ? (
-              <h4>
-                <small>{error.duration}</small>
-              </h4>
-            ) : (
-              false
-            )}
-          </div>
-          <div className={s.containerActivitys}>
-            <label>Season</label>
-            <select
-              name="season"
-              value={activitys.season}
-              onBlur={(e) => handleBlur(e)}
-              onChange={(e) => handleSelectEnum(e)}
-            >
-              <option value="Choose">Choose</option>
-              {season.map((s) => (
-                <option value={s}>{s}</option>
-              ))}
-            </select>
-            {error.season ? (
-              <h4>
-                <small>{error.season}</small>
-              </h4>
-            ) : (
-              false
-            )}
-          </div>
-          <div className={s.containerActivitys}>
-            <label>Countries</label>
-            <select
-              name="countrie"
-              value={activitys.countries}
-              onBlur={(e) => handleBlur(e)}
-              onChange={(e) => handleSelectCountry(e)}
-            >
-              <option>Choose</option>
-              {getCountry.map((e) => (
-                <option value={e.id}>{e.name}</option>
-              ))}
-            </select>
-            {error.countries ? (
-              <h4>
-                <small>{error.countries}</small>
-              </h4>
-            ) : (
-              false
-            )}
-            <button
-              type="submit"
-              disabled={Object.keys(error).length < 1 ? false : true}
-            >
-              Create activities
-            </button>
-          </div>
+      <div className={s.containerFull}>
+        <div>
+          <NavBar />
         </div>
-      </form>
-      <div>
-        <ul className={s.containerUl}>
-          <li className={s.containerLi}>
-            {activitys.countries.map((e) => (
-              <button className={s.buttonMap}>
-                {e}
-                <button className={s.buttonX} onClick={() => handleDelete(e)}>
-                  X
-                </button>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <div className={s.containerForm}>
+            <div className={s.containerActivitys}>
+              <label>Name</label>
+              <input
+                name="name"
+                autoComplete="off"
+                onBlur={(e) => handleBlur(e)}
+                value={activitys.name}
+                onChange={(e) => handleChange(e)}
+              />
+              {error.name ? (
+                <h4>
+                  <small>{error.name}</small>
+                </h4>
+              ) : (
+                false
+              )}
+            </div>
+            <div className={s.containerActivitys}>
+              <label>Difficulty</label>
+              <select
+                name="difficulty"
+                value={activitys.difficulty}
+                onBlur={(e) => handleBlur(e)}
+                onChange={(e) => handleSelectEnum(e)}
+              >
+                <option value="Choose">Choose</option>
+                {difficulty.map((d) => (
+                  <option value={d}>{d}</option>
+                ))}
+              </select>
+              {error.difficulty ? (
+                <h4>
+                  <small>{error.difficulty}</small>
+                </h4>
+              ) : (
+                false
+              )}
+            </div>
+            <div className={s.containerActivitys}>
+              <label>Duration</label>
+              <select
+                name="duration"
+                value={activitys.duration}
+                onBlur={(e) => handleBlur(e)}
+                onChange={(e) => handleSelectEnum(e)}
+              >
+                <option value="Choose">Choose</option>
+                {duration.map((d) => (
+                  <option value={d}>{d}</option>
+                ))}
+              </select>
+              {error.duration ? (
+                <h4>
+                  <small>{error.duration}</small>
+                </h4>
+              ) : (
+                false
+              )}
+            </div>
+            <div className={s.containerActivitys}>
+              <label>Season</label>
+              <select
+                name="season"
+                value={activitys.season}
+                onBlur={(e) => handleBlur(e)}
+                onChange={(e) => handleSelectEnum(e)}
+              >
+                <option value="Choose">Choose</option>
+                {season.map((s) => (
+                  <option value={s}>{s}</option>
+                ))}
+              </select>
+              {error.season ? (
+                <h4>
+                  <small>{error.season}</small>
+                </h4>
+              ) : (
+                false
+              )}
+            </div>
+            <div className={s.containerActivitys}>
+              <label>Countries</label>
+              <select
+                name="countrie"
+                value={activitys.countries}
+                onBlur={(e) => handleBlur(e)}
+                onChange={(e) => handleSelectCountry(e)}
+              >
+                <option>Choose</option>
+                {getCountry.map((e) => (
+                  <option value={e.id}>{e.name}</option>
+                ))}
+              </select>
+              {error.countries ? (
+                <h4>
+                  <small>{error.countries}</small>
+                </h4>
+              ) : (
+                false
+              )}
+              <button
+                type="submit"
+                disabled={Object.keys(error).length < 1 ? false : true}
+              >
+                Create activities
               </button>
-            ))}
-          </li>
-        </ul>
+            </div>
+          </div>
+        </form>
+        <div>
+          <ul className={s.containerUl}>
+            <li className={s.containerLi}>
+              {activitys.countries.map((e) => (
+                <button className={s.buttonMap}>
+                  {e}
+                  <button className={s.buttonX} onClick={() => handleDelete(e)}>
+                    X
+                  </button>
+                </button>
+              ))}
+            </li>
+          </ul>
+        </div>
       </div>
     </>
   );

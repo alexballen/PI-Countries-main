@@ -11,6 +11,7 @@
   margin: 1%;
   background: linear-gradient(#dae6e9, #03c9f4);
   flex-shrink: 3;
+  border: 1px solid #251f1f;
 
   /* display: inline-block;
   margin: 0 0 1em;

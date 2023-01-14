@@ -7,3 +7,5 @@ export const GET_DETAIL = "GET_DETAIL";
 export const GET_ACTIVITY = "GET_ACTIVITY";
 export const BY_ACTIVITY = "BY_ACTIVITY";
 export const POST_ACTIVITY = "POST_ACTIVITY";
+export const PAGE_PAGINATED = "PAGE_PAGINATED";
+export const BY_CONT_ACTI = "BY_CONT_ACTI";

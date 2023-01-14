@@ -16,7 +16,7 @@ body {
   width: 110px;
   height: 30px;
   border: solid 1px;
-  border-radius: 5px;
+  margin-top: 5%;
 }
 
 .button a {
@@ -30,9 +30,9 @@ body {
   /* display: flex;
   flex-direction: column;
   align-items: center; */
-  position: fixed;
+  /* position: fixed;
   width: 100%;
-  background: #251f1f;
+  background: #251f1f; */
 }
 
 .containerTotal {
@@ -40,6 +40,7 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 50px;
+  background-color: #fdf5e6;
 }
 
 .container {
@@ -155,7 +156,8 @@ body {
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  width: 700px;
+  width: auto;
+  height: auto;
   border: 0.5px solid #303030;
   padding: 10px;
   border-radius: 15px;

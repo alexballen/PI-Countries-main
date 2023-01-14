@@ -14,6 +14,9 @@ body {
 /*
 #d2d091
 */
+.headcontainer {
+  background-color: bisque;
+}
 
 .barraNav {
   display: flex;
@@ -39,15 +42,22 @@ body {
 }
 
 .barraNav button {
-  background: white;
+  /* background: white;
   border: 1px solid black;
-  padding: 2px;
+  padding: 2px; */
   /* margin-right: 15px; */
+}
+
+.buttonLink {
+  background: #251f1f;
+  text-decoration: none;
 }
 
 .link {
   text-decoration: none;
-  /* padding: 5px; */
+  background-color: #251f1f;
+  padding: 2px;
+  color: #ff6961;
   font-family: "Tahoma", "Geneva", "Verdana", "sans-serif";
 }
 
@@ -67,7 +77,7 @@ body {
 }
 
 .filtros {
-  background: rgb(222, 216, 216);
+  background: #251f1f;
   /* margin: 5px 210px 2px 210px; */
   /*  padding: 5px; */
   min-width: 200px;
@@ -86,6 +96,7 @@ body {
   align-items: flex-start;
   align-content: space-around;
   flex-shrink: 3;
+  background-color: #fdf5e6;
 }
 
 .link2 {

@@ -19,7 +19,11 @@ const getCountryApi = async () => {
       return obj;
     });
 
-    await Country.bulkCreate(gApi);
+    const allCoun = await Country.findAll();
+
+    if (allCoun.length === 0) {
+      await Country.bulkCreate(gApi);
+    }
 
     const allCountries = await Country.findAll({
       include: Activities,

@@ -7,10 +7,7 @@ const NavBar = () => {
     <div className={s.continer}>
       <nav className={s.navbar}>
         <button className={s.button}>
-          <NavLink to="/countries">Countries</NavLink>
-        </button>
-        <button className={s.button}>
-          <NavLink to="/form">Form</NavLink>
+          <NavLink to="/countries">Home</NavLink>
         </button>
       </nav>
     </div>
