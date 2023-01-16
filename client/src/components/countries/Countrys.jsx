@@ -9,9 +9,9 @@ import {
   orderByPopulation,
   currentPagePaginated,
   byActivityAndContinent,
+  getNameSearch,
 } from "../../redux/actions/index.js";
 import Country from "./Country.jsx";
-import SearchBar from "../search/SearchBar.jsx";
 import { Link } from "react-router-dom";
 import Paginated from "../paginated/Paginated.jsx";
 import s from "./Countrys.module.css";
@@ -84,17 +84,35 @@ const Countrys = () => {
     setOrder(e.target.value);
   };
 
+  const handleInputChange = (e) => {
+    e.preventDefault();
+    dispatch(getNameSearch(e.target.value));
+    dispatch(currentPagePaginated(1));
+    setPaginaActual(1);
+  };
+
   return (
     <>
       <div className={s.headcontainer}>
         <div className={s.barraNav}>
-          <h1>Knowing The World</h1>
+          <div className={s.titleDiv}>
+            <h1>Knowing The World</h1>
+          </div>
           <button className={s.buttonLink}>
             <Link className={s.link} to="/form">
               ADD ACTIVITY
             </Link>
           </button>
-          <SearchBar />
+          <div>
+            <input
+              className={s.input}
+              id="search"
+              type="text"
+              placeholder="Search..."
+              autoComplete="off"
+              onChange={(e) => handleInputChange(e)}
+            />
+          </div>
         </div>
         <div className={s.container}>
           <div className={s.filtros}>

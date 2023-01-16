@@ -3,14 +3,27 @@
   padding: 0;
   box-sizing: border-box;
 }
-.continer {
+.container {
   width: 100%;
+  position: relative;
+  animation-name: example;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes example {
+  from {
+    top: 0px;
+  }
+  to {
+    top: 67px;
+  }
 }
 
 .navbar {
-  background-color: white;
   text-decoration: none;
   width: 100%;
+  margin-top: 0%;
 }
 
 .navbar a:hover {
@@ -30,7 +43,6 @@
   background: #251f1f;
   width: 110px;
   height: 30px;
-  margin-top: 5%;
 }
 .navbar a.active {
   color: rgb(90, 90, 90);

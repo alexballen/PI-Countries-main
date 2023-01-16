@@ -7,6 +7,13 @@
   background-color: bisque;
 }
 
+.input {
+  width: 100px;
+  border: 1px;
+  outline: none;
+  border: 1px solid black;
+}
+
 .barraNav {
   display: flex;
   flex-direction: row;
@@ -16,9 +23,41 @@
   margin-top: 5px;
 }
 
+.titleDiv {
+  position: relative;
+  animation-name: example;
+  animation-duration: 4s;
+  animation-delay: 0.3s;
+}
+
+@keyframes example {
+  0% {
+    left: 0px;
+    top: 0px;
+  }
+  25% {
+    left: 100px;
+    top: 0px;
+  }
+  50% {
+    left: 150px;
+    top: 30px;
+  }
+  75% {
+    left: 0px;
+    top: 30px;
+  }
+  100% {
+    left: 0px;
+    top: 0px;
+  }
+}
+
 .barraNav h1 {
-  color: #ff6961;
   font-size: 4vw;
+  color: #ff6961;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black,
+    0 0 25px #251f1f, 0 0 5px #251f1f;
 }
 
 .barraNav button {

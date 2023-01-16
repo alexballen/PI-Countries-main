@@ -137,10 +137,10 @@ const Form = () => {
 
   return (
     <>
+      <div className={s.NavDiv}>
+        <NavBar />
+      </div>
       <div className={s.containerFull}>
-        <div>
-          <NavBar />
-        </div>
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className={s.containerForm}>
             <div className={s.containerActivitys}>

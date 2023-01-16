@@ -16,7 +16,6 @@ body {
   width: 110px;
   height: 30px;
   border: solid 1px;
-  margin-top: 5%;
 }
 
 .button a {
@@ -27,12 +26,19 @@ body {
 }
 
 .contButton {
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
-  /* position: fixed;
-  width: 100%;
-  background: #251f1f; */
+  position: relative;
+  animation-name: example;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes example {
+  from {
+    top: 0px;
+  }
+  to {
+    top: 67px;
+  }
 }
 
 .containerTotal {
@@ -41,6 +47,7 @@ body {
   align-items: center;
   padding: 50px;
   background-color: #fdf5e6;
+  margin-top: 5%;
 }
 
 .container {
