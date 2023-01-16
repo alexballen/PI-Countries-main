@@ -38,3 +38,9 @@
 .paginado ul li a:focus {
   background-color: #086d92;
 }
+
+@media screen and (max-width: 411px) {
+  .paginado {
+    display: none;
+  }
+}

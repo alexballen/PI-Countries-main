@@ -4,7 +4,7 @@
 }
 
 .headcontainer {
-  background-color: bisque;
+  background-color: lightgreen;
 }
 
 .input {
@@ -116,6 +116,17 @@
   background-color: #fdf5e6;
 }
 
+.buttonPage1 {
+  width: 25px;
+  height: 25px;
+}
+
+.buttonPage2 {
+  width: 25px;
+  height: 25px;
+  margin: 4px;
+}
+
 .link2 {
   text-decoration: none;
 }
@@ -123,4 +134,10 @@
 .link2:hover {
   transition: all 0.5s ease-in-out;
   filter: saturate(180%);
+}
+
+@media screen and (min-width: 480px) {
+  .headcontainer {
+    background-color: lightgreen;
+  }
 }

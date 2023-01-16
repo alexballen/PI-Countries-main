@@ -91,6 +91,16 @@ const Countrys = () => {
     setPaginaActual(1);
   };
 
+  const handleBack = () => {
+    setPaginaActual(paginaActual - 1);
+    dispatch(currentPagePaginated(paginaActual));
+  };
+
+  const handleNext = () => {
+    setPaginaActual(paginaActual + 1);
+    dispatch(currentPagePaginated(paginaActual));
+  };
+
   return (
     <>
       <div className={s.headcontainer}>
@@ -152,6 +162,23 @@ const Countrys = () => {
             countries={countries.length}
             paginado={paginado}
           />
+          <div>
+            <button
+              className={s.buttonPage1}
+              disabled={paginaActual === 1 ? true : false}
+              onClick={handleBack}
+            >
+              {"<"}
+            </button>
+            <button className={s.buttonPage2}>{paginaActual}</button>
+            <button
+              className={s.buttonPage1}
+              disabled={paginaActual === 25 ? true : false}
+              onClick={handleNext}
+            >
+              {">"}
+            </button>
+          </div>
         </div>
       </div>
       <div className={s.containerDos}>
