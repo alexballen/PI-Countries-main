@@ -5,20 +5,12 @@
   align-items: center;
   width: 350px;
   height: 300px;
-  /* border: 0.5px solid #ff6961; */
   padding: 15px;
   border-radius: 15px;
   margin: 1%;
   background: linear-gradient(#dae6e9, #03c9f4);
   flex-shrink: 3;
   border: 1px solid #251f1f;
-
-  /* display: inline-block;
-  margin: 0 0 1em;
-  padding: 1em;
-  border: 1px dotted #d9d9d9; */
-
-  /* background: linear-gradient(#fdfd96 50%, #800); */
 }
 
 .containerDiv {
@@ -33,6 +25,15 @@
 .container img {
   width: 250px;
   height: 150px;
+  transition: all 0.5s ease-in-out;
+}
+
+.container img:hover {
+  box-shadow: 0px 0px 15px 15px #251f1f;
+  -webkit-box-shadow: 0px 0px 15px 15px #251f1f;
+  background-color: #251f1f;
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
 }
 
 .container h2 {
@@ -46,7 +47,3 @@
 .container h4 {
   color: #303030;
 }
-
-/*
-651b13
-*/
