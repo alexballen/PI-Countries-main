@@ -91,14 +91,16 @@ const Countrys = () => {
     setPaginaActual(1);
   };
 
-  const handleBack = () => {
+  const handleBack = (e) => {
+    e.preventDefault();
     setPaginaActual(paginaActual - 1);
-    dispatch(currentPagePaginated(paginaActual));
+    dispatch(currentPagePaginated(paginaActual - 1));
   };
 
-  const handleNext = () => {
+  const handleNext = (e) => {
+    e.preventDefault();
     setPaginaActual(paginaActual + 1);
-    dispatch(currentPagePaginated(paginaActual));
+    dispatch(currentPagePaginated(paginaActual + 1));
   };
 
   return (

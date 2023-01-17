@@ -62,10 +62,10 @@ const Detail = () => {
 
           <h3>
             {det.activities
-              ? det.activities.map((e) => {
+              ? det.activities.map((e, i) => {
                   return (
                     <>
-                      <div className={s.contActvities}>
+                      <div key={i} className={s.contActvities}>
                         <h3 className={s.controlDiv}>
                           Name<p>{e.name}</p>
                         </h3>

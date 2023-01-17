@@ -5,7 +5,7 @@ import {
   postActivities,
   getActivitys,
 } from "../../redux/actions/index.js";
-import NavBar from "../nav/NavBar.jsx";
+import { Link } from "react-router-dom";
 import s from "./Form.module.css";
 
 const validationsForms = (form) => {
@@ -137,8 +137,10 @@ const Form = () => {
 
   return (
     <>
-      <div className={s.NavDiv}>
-        <NavBar />
+      <div className={s.contButton}>
+        <button className={s.button}>
+          <Link to="/countries">Home</Link>
+        </button>
       </div>
       <div className={s.containerFull}>
         <form onSubmit={(e) => handleSubmit(e)}>
@@ -169,8 +171,10 @@ const Form = () => {
                 onChange={(e) => handleSelectEnum(e)}
               >
                 <option value="Choose">Choose</option>
-                {difficulty.map((d) => (
-                  <option value={d}>{d}</option>
+                {difficulty.map((d, i) => (
+                  <option key={i} value={d}>
+                    {d}
+                  </option>
                 ))}
               </select>
               {error.difficulty ? (
@@ -190,8 +194,10 @@ const Form = () => {
                 onChange={(e) => handleSelectEnum(e)}
               >
                 <option value="Choose">Choose</option>
-                {duration.map((d) => (
-                  <option value={d}>{d}</option>
+                {duration.map((d, i) => (
+                  <option key={i} value={d}>
+                    {d}
+                  </option>
                 ))}
               </select>
               {error.duration ? (
@@ -211,8 +217,10 @@ const Form = () => {
                 onChange={(e) => handleSelectEnum(e)}
               >
                 <option value="Choose">Choose</option>
-                {season.map((s) => (
-                  <option value={s}>{s}</option>
+                {season.map((s, i) => (
+                  <option key={i} value={s}>
+                    {s}
+                  </option>
                 ))}
               </select>
               {error.season ? (
@@ -232,8 +240,10 @@ const Form = () => {
                 onChange={(e) => handleSelectCountry(e)}
               >
                 <option>Choose</option>
-                {getCountry.map((e) => (
-                  <option value={e.id}>{e.name}</option>
+                {getCountry.map((e, i) => (
+                  <option key={i} value={e.id}>
+                    {e.name}
+                  </option>
                 ))}
               </select>
               {error.countries ? (
@@ -255,8 +265,8 @@ const Form = () => {
         <div>
           <ul className={s.containerUl}>
             <li className={s.containerLi}>
-              {activitys.countries.map((e) => (
-                <button className={s.buttonMap}>
+              {activitys.countries.map((e, i) => (
+                <button key={i} className={s.buttonMap}>
                   {e}
                   <button className={s.buttonX} onClick={() => handleDelete(e)}>
                     X

@@ -16,6 +16,36 @@ body {
   margin-top: 5%;
 }
 
+.button {
+  background: #251f1f;
+  width: 110px;
+  height: 30px;
+  border: solid 1px;
+}
+
+.button a {
+  padding: 0px 1px 0px 1px;
+  color: #ff6961;
+  text-decoration: none;
+  border-radius: 3%;
+}
+
+.contButton {
+  position: relative;
+  animation-name: example;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes example {
+  from {
+    top: 0px;
+  }
+  to {
+    top: 67px;
+  }
+}
+
 .containerForm {
   display: inline-flex;
   flex-direction: column;
