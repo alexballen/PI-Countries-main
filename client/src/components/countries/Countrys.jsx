@@ -184,22 +184,32 @@ const Countrys = () => {
         </div>
       </div>
       <div className={s.containerDos}>
-        {paisActual
-          ? paisActual.map((e, i) => {
-              return (
-                <div key={i}>
-                  <Link className={s.link2} to={"/countries/" + e.id}>
-                    <Country
-                      key={e.id}
-                      flags={e.flags}
-                      name={e.name}
-                      continents={e.continents}
-                    />
-                  </Link>
-                </div>
-              );
-            })
-          : "No hay Countrys"}
+        {paisActual.length > 0 ? (
+          paisActual?.map((e, i) => {
+            return (
+              <div key={i}>
+                <Link className={s.link2} to={"/countries/" + e.id}>
+                  <Country
+                    key={e.id}
+                    flags={e.flags}
+                    name={e.name}
+                    continents={e.continents}
+                  />
+                </Link>
+              </div>
+            );
+          })
+        ) : (
+          <div className={s.loadingCountries}>
+            {
+              <img
+                src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif"
+                alt="Not found"
+              />
+            }
+            {<div>{"There are no countries"}</div>}
+          </div>
+        )}
       </div>
     </>
   );

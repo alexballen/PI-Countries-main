@@ -39,7 +39,7 @@
   background-color: #086d92;
 }
 
-@media screen and (max-width: 411px) {
+@media screen and (max-width: 480px) {
   .paginado {
     display: none;
   }
