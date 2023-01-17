@@ -19,7 +19,7 @@ const Detail = () => {
 
   function vacio(err = []) {
     if (err.length === 0) {
-      return "No hay activities";
+      return "No activities";
     }
   }
 
