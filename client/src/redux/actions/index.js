@@ -15,7 +15,7 @@ import axios from "axios";
 export const getCountrys = () => {
   return async (dispatch) => {
     try {
-      const getCountries = await axios.get("http://localhost:3001/countries");
+      const getCountries = await axios.get("/countries");
       dispatch({
         type: GET_COUNTRYS,
         payload: getCountries.data,
@@ -52,7 +52,7 @@ export const getNameSearch = (input) => (dispatch) => {
 export const getCountryId = (id) => {
   return async (dispatch) => {
     try {
-      const getId = await axios.get("http://localhost:3001/countries/" + id);
+      const getId = await axios.get("/countries/" + id);
       dispatch({
         type: GET_DETAIL,
         payload: getId.data,
@@ -72,7 +72,7 @@ export const clear = () => {
 export const getActivitys = () => {
   return async (dispatch) => {
     try {
-      const getAct = await axios.get("http://localhost:3001/activities");
+      const getAct = await axios.get("/activities");
       dispatch({
         type: GET_ACTIVITY,
         payload: getAct.data,
@@ -114,7 +114,7 @@ export const orderByPopulation = (payload) => {
 export const postActivities = (payload) => {
   return async (dispatch) => {
     try {
-      await axios.post("http://localhost:3001/activities", payload);
+      await axios.post("/activities", payload);
     } catch (error) {
       console.log(error + "Error actions -> postActivities");
     }
